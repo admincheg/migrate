@@ -8,7 +8,7 @@ COVERAGE_DIR ?= .coverage
 
 build-cli: clean
 	-mkdir -p ./cli/build
-	cd ./cmd/migrate && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o ../../cli/build/migrate.linux-amd64 -ldflags='-s -w -X main.Version=$(VERSION) -extldflags "-static"' -tags '$(DATABASE) $(SOURCE)' .
+	cd ./cmd/migrate && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o ../../cli/build/migrate.linux-amd64 -ldflags='-s -w -X main.Version=$(VERSION) -extldflags "-static"' -tags 'create_drop_db $(DATABASE) $(SOURCE)' .
 	cd ./cmd/migrate && CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o ../../cli/build/migrate.darwin-amd64 -ldflags='-s -w -X main.Version=$(VERSION) -extldflags "-static"' -tags 'create_drop_db $(DATABASE) $(SOURCE)' .
 
 clean:
